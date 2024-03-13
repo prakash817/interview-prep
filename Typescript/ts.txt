@@ -1,0 +1,511 @@
+-How typescript is run ?
+ans :
+    1. whenever you try to write a code there is a static checker which continusly analyzing the type of code and give hint 
+       if there is something is wrong .
+
+
+- What is TypeScript and how does it differ from JavaScript?
+ans :
+    1. TypeScript is an open-source object-oriented programming language developed by Microsoft.
+    2. This language is considered as the superset of JavaScript.
+    2. TypeScript allows developers to specify types for variables, function parameters, and return values.
+    2. TypeScript adds optional static types, classes, interfaces, and other features to JavaScript .
+    3. Typescript making JavaScript more robust and scalable for building large-scale applications. 
+    4. TypeScript cannot run directly on the browser. It needs a compiler to compile the file and generate a JavaScript file, which can run directly on the browser
+    5. TypeScript uses TSC (TypeScript Compiler) which convert Typescript code (.ts file) to JavaScript (.js file).
+    6. The TypeScript source file is in ".ts" extension .
+
+        Javascript  
+                -1.Dynamic typing language ,types inferred at runtime .
+                -2.Runs directly in browsers or server environments .
+                -3.Errors often detected at runtime .
+                -4.Suitable for smaller projects or rapid prototyping where flexibility is key
+        Typescript :                                           
+                -1.static typing with type annotations
+                -2. Requires compilation step to convert to JavaScript .
+                -3.Early detection of errors through static type checking .
+                -4.Ideal for large-scale projects where type safety and scalability are important
+ 
+ - What are the benefits of using TypeScript ?
+ ans : 
+    1."Static Typing": TypeScript allows developers to specify types for variables, function parameters, and return values.
+    2."Early Error Detection": TypeScript catches type-related errors during compilation, allowing developers to fix them before running the code.
+    3."Scalability": TypeScript is well-suited for building large-scale applications.
+    4."Backward Compatibility": TypeScript is a superset of JavaScript, meaning that existing JavaScript code can be gradually migrated to TypeScript without any major rewrites
+
+
+- What are the basic data types in TypeScript ?
+ans ; 
+    1. "Boolean": Represents a logical value indicating true or false.
+    2. "Number" : Represents both integer and floating-point numbers.
+    3. "String" : Represents a sequence of characters, enclosed in single (') or double (") quotes.
+    4. "Array"  : Represents a collection of elements of the same type, denoted by square brackets ([]).
+    5. "Tuple"  : Represents an array-like structure where each element can have a different type and is known by its position.
+    6. "Enum"   : A way of giving more friendly names to sets of numeric values. Enums are a feature added to the JavaScript standard with TypeScript, and they allow defining a set of named constants.
+    7. "Any"    : Represents any type and allows dynamic typing similar to JavaScript.
+    8. "Void"   : Represents the absence of any type. Typically used as the return type of functions that do not return a value.
+    9. "Null and Undefined": Represents the absence of value or an uninitialized variable. They are their own types null and undefined, respectively.
+    10."Never"  : Represents the type of values that never occur. For example, a function that always throws an error.
+
+
+- What is the difference between interfaces and types in TypeScript ?
+ans :
+    -In TypeScript, both interfaces and types are used to define "shapes of objects or custom types", but they have some differences in terms of their capabilities :
+        -1. Syntax:
+                -Interfaces: Interfaces use the "interface" keyword to define a new type.
+                -Types: Type aliases use the "type" keyword to create a new name for a type.
+                 Example : 
+                    // Interface
+                    interface Person {
+                        name: string;
+                        age: number;
+                    }
+
+                    // Type
+                    type Point = {
+                        name: string;
+                        age: number;
+                    };
+        -2. Extensibility:
+                -Interfaces: Interfaces can be extended by other interfaces using the "extends" keyword.
+                -Types: Type aliases cannot be extended .
+                Example : 
+                    // Interface extension
+                    interface Animal {
+                        species: string;
+                    }
+
+                    interface Dog extends Animal {
+                        bark(): void;
+                    }
+        -3. Declaration Merging:
+                -Interfaces: Interfaces support declaration merging, meaning that multiple declarations of the same interface name are automatically merged together.
+                -Types: Type aliases do not support declaration merging.
+
+                    Example : 
+                        // Interface declaration merging
+                        interface User {
+                            name: string;
+                        }
+
+                        interface User {
+                            age: number;
+                        }
+
+                        // Merged interface
+                        // Resulting interface: interface User { name: string; age: number; }
+
+
+- what is generics in typescript ?
+ans : 
+    1. "Generics" in TypeScript allow you to create reusable components or functions that can work with multiple data types.
+    2. "Generics" enable you to define placeholders for types that are specified when the component or function is used .
+    3. it allow flexibility and type checking .
+    4. "Generics" are declared using angle brackets (<>) and can be represented by any identifier, commonly denoted by single uppercase letters such as T, U, or K.
+    problem previously :-
+    
+        function logAndReturn( value: number | string | boolean): number | string | boolean{
+            console.log(... data: value);
+            return value;
+        }
+        
+        
+        const numberResult  = logAndReturn<Number>(42);
+        const stringResult = logAndReturn<String>( "Hello Generics!");
+        const boolean Result  = logAndReturn<boolean>(false)
+
+        solved by using generics :
+
+        function logAndReturn<T>( value: T): T{
+                console.log(... data: value);
+                return value;
+        }
+
+        //using arrow function
+        const logAndReturn = <T>( value: T): T => {
+                console.log(... data: value);
+                return value;
+        }
+        
+        const numberResult  = logAndReturn(42);
+        const stringResult = logAndReturn( "Hello Generics!");
+        const boolean Result  = logAndReturn(false)
+
+
+- Explain multiple generics : 
+ans :
+    1. Multiple Generics: You can use multiple generic type parameters in a single function or component definition to work with multiple types simultaneously.
+
+        function pair<T, U>(first: T, second: U): [T, U] {
+            return [first, second];
+        }
+
+        let tuple = pair<number, string>(10, "Hello");
+        // tuple is of type [number, string]
+
+
+- How does TypeScript support "optional parameters" and "default parameters" in functions ?
+ans :
+    1."optional parameters" :
+            1.In TypeScript, you can mark function parameters as optional by appending a question mark (?) to their names in the parameter list .
+            2. optional parameter having value when calling function called with parameter, if not then parameter having "undefined value" .
+            Example: 
+                function greet(name?: string) {
+                    if (name) {
+                        console.log("Hello, " + name);
+                    } else {
+                        console.log("Hello, stranger!");
+                    }
+                }
+
+                greet(); // Output: Hello, stranger!
+                greet("Alice"); // Output: Hello, Alice
+
+
+    2. "default parameters" :
+            1.TypeScript also supports default parameter values, allowing you to specify default values for parameters in case they are not provided during function invocation .
+            2. Default parameter values are specified by assigning a value directly to the parameter in the function declaration.
+            Example :
+                function greet(name: string = "stranger") {
+                    console.log("Hello, " + name);
+                }
+
+                greet(); // Output: Hello, stranger
+                greet("Alice"); // Output: Hello, Alice
+
+
+- What are union and intersection types in TypeScript?
+ans : 
+    1. Union and intersection types are advanced features in TypeScript 
+        that allow you to combine multiple types into a single type, providing flexibility
+
+        1.Union Types: 
+                -Union types provides a solution to developer when developer having doubt about type in "either or" situation.
+                -They are denoted by using the pipe (|) .
+                Example :
+
+                let result: string | number;
+                result = "Hello"; // Valid
+                result = 10; // Valid
+
+                Example 2
+                    let seatAllotment: "aisle" | "middle" | "window"
+                    seatAllotment = "aisle"
+                    seatAllotment = "crew"
+
+
+        2.Intersection Types:
+                -Intersection Types allow a value should be of all of types mentioned.
+                -They are denoted by using the pipe (&) .
+                Example :
+                    // Define two types
+                    type A = {
+                        a: number;
+                    };
+
+                    type B = {
+                        b: string;
+                    };
+
+                    // Create an object that combines properties from both types
+                    const obj: A & B = {
+                        a: 10,
+                        b: "Hello"
+                    };
+
+                    console.log(obj.a); // Output: 10
+                    console.log(obj.b); // Output: Hello
+
+
+- Explain the concept of access modifiers in TypeScript and their significance ?
+ans :
+    1. Access modifiers in TypeScript are keywords used to control the visibility and accessibility of class members (properties and methods).
+    2. TypeScript provides three access modifiers: "public", "private", and "protected".
+
+        1.Public Access Modifier (public):
+                -Members marked as public are accessible from anywhere, both within the class and from external code.
+                    Example :
+                        class MyClass {
+                            public x: number;
+                            public constructor(x: number) {
+                                this.x = x;
+                            }
+                            public getX(): number {
+                                return this.x;
+                            }
+                        }
+                        const obj = new MyClass(10);
+                        console.log(obj.x);   // Accessible
+                        console.log(obj.getX()); // Accessible
+
+        2.Private Access Modifier (private):
+                -Members marked as private are accessible only within the class in which they are declared.
+                -They cannot be accessed from outside the class, including subclasses.
+
+                Example :
+                    class MyClass {
+                        private x: number;
+                        constructor(x: number) {
+                            this.x = x;
+                        }
+                        public getX(): number {
+                            return this.x; // Accessible
+                        }
+                    }
+                    const obj = new MyClass(10);
+                    console.log(obj.x);   // Error: Property 'x' is private and only accessible within class 'MyClass'
+
+
+        3.Protected Access Modifier (protected):
+                -Members marked as protected are accessible within the class in which they are declared and by subclasses (derived classes).
+                -They cannot be accessed from outside the class hierarchy.
+                Example :
+                    class Parent {
+                        protected x: number;
+                        constructor(x: number) {
+                            this.x = x;
+                        }
+                    }
+                    class Child extends Parent {
+                        constructor(x: number) {
+                            super(x);
+                            console.log(this.x); // Accessible
+                        }
+                    }
+                    const obj = new Parent(10);
+                    console.log(obj.x);   // Error: Property 'x' is protected and only accessible within class 'Parent' and its subclasses
+
+
+- What is a tuple in TypeScript? Provide an example ? 
+ans :
+    1. In TypeScript, a tuple is a data structure that allows you to store a fixed number of elements, where each element can have its own specific type. 
+    2. where elements order should be in precise order or pattern according to the type declairation.
+    3. length should be exact as declaire .
+    4. Tuples allow you to express an array where the type of a fixed number of elements is known, but they need not be of the same type unlike array where all element have same type.
+
+    Exampel : 
+        // Declare a tuple type
+        let employee: [number, string, boolean];
+
+        // Initialize the tuple
+        employee = [1, "John Doe", true];
+
+        // Access elements of the tuple
+        console.log(employee[0]); // Output: 1
+        console.log(employee[1]); // Output: John Doe
+        console.log(employee[2]); // Output: true
+
+        // Update an element of the tuple
+        employee[1] = "Jane Smith";
+        console.log(employee[1]); // Output: Jane Smith
+
+        // Error: Type 'number' is not assignable to type 'boolean'
+        // employee[2] = 100;
+    usage :   1.api calling structure having specific structure.
+                2. rgb value . rgb:[number,number ,nnmber]
+
+
+- What is a type assertion in TypeScript? When would you use it? 
+ans :
+    1. A type assertion in TypeScript is a way to explicitly tell the compiler about the type of a value .
+    2. it overrides its default type .
+    3. "Type assertions" are performed using the as keyword or the angle bracket syntax (<Type>). 
+
+    Example :
+        Using the "as" keyword:
+
+        let someValue: any = "hello world";
+        let strLength: number = (someValue as string).length;
+
+        Using angle bracket syntax:
+        let someValue: any = "hello world";
+        let strLength: number = (<string>someValue).length;
+
+            In both examples, someValue is initially of type any, meaning TypeScript doesn't have enough information about its type.
+             By using a type assertion, we tell TypeScript to treat someValue as a string, allowing us to access properties or methods specific to that type (in this case, the length property).
+
+            It's important to note that type assertions do not change the underlying data at runtime.
+             They are purely a way to tell the TypeScript compiler about the expected type of a value.
+              If the type assertion is incorrect and the actual value does not match the asserted type, it can lead to runtime errors.
+
+            When to use :
+                1.When migrating code from JavaScript to TypeScript and the developer has more knowledge about the types than TypeScript can infer automatically.
+
+
+- What are the different ways to declare arrays in TypeScript?
+ans :
+    1. Using square brackets ("[]"):
+        let numbers: number[] = [1, 2, 3, 4, 5];
+        let strings: string[] = ["apple", "banana", "orange"];
+        let mixed: (number | string)[] = [1, "two", 3, "four"];
+    
+    2.Using the generic "Array" type:
+        let numbers: Array<number> = [1, 2, 3, 4, 5];
+        let strings: Array<string> = ["apple", "banana", "orange"];
+        let mixed: Array<number | string> = [1, "two", 3, "four"];
+
+    3.Using the "Array" constructor:
+        let numbers: Array<number> = new Array<number>(1, 2, 3, 4, 5);
+        let strings: Array<string> = new Array<string>("apple", "banana", "orange");
+        let mixed: Array<number | string> = new Array<number | string>(1, "two", 3, "four");
+
+    4.Using type inference:
+        let numbers = [1, 2, 3, 4, 5]; // numbers: number[]
+        let strings = ["apple", "banana", "orange"]; // strings: string[]
+        let mixed = [1, "two", 3, "four"]; // mixed: (number | string)[]
+
+
+ - Explain Enum in TypeScript? 
+ ans : 
+    1.  Enums or enumerations are a new data type supported in TypeScript
+    2. enum allow us to declare a set of named constants i.e. a collection of related values that can be numeric or string values
+
+    There are three types of enums:
+        • Numeric enum  : 
+                -Numeric enums are number-based enums, which store values as numbers.
+                -it automatic increse value when defined to first one .
+                Example : 
+                    enum Direction {
+                        Up = 1,
+                        Down,
+                        Left,
+                        Right,
+                    }
+
+
+        • String enum : 
+                -In a string enum, each enum values are constant initialized with a string literal, or with another string enum member rather than numeric values
+                Example :
+                    enum AppStatus {
+                        ACTIVE = 'ACT',
+                        INACTIVE = 'INACT',
+                        ONHOLD = 'HLD',
+                        ONSTOP = 'STOP'
+                    }
+        • Heterogeneous enum :
+                -Heterogeneous enums are enums that contain both string and numeric values.
+                Example :
+                    enum Status {
+                        Active = 'ACTIVE',
+                        Deactivate = 1,
+                        Pending }
+
+
+-where we use "never" ?
+ans :   
+    1. Some functions never return a value:
+                function fail(msg: string): never {
+                        throw new Error (msg);
+                }
+
+        note : it can be void but for robust error handling it should be "never"
+
+
+- What is type alias ?
+ans :
+    1.You can actually use a type alias to give a name to any type at all, not just an object type. 
+    2. it avoid to make function defination lengthy
+        Example for object :
+
+            type Point = {
+                    x: number;
+                    y: number;
+                };
+                // Exactly the same as the earlier example
+                function printCoord(pt: Point) {
+                    console.log("The coordinate's x value is + pt.x);
+                    console.log("The coordinate's y value is + pt.y);
+                    
+                }
+                printCoord({ x: 100, y: 100 });    
+
+
+        For example, a type alias can name a union type:
+                 type MyVal = number | string:
+
+
+- What is interface in Typescript ?
+ans :
+    1. In TypeScript, an interface is a syntactical contract that defines the structure of an object.
+    2. It specifies the names and types of properties and methods that an object must have to conform to the interface .
+    3. it provide clear expectations for how objects should be shaped.
+    4. Interfaces are declared using the interface keyword .
+    5. it allows reopening interface means we can again declair same inrface and add different type :
+    6. it also allow the extends the different interface type .
+
+
+    Example :
+        interface User {
+                readonly dbId: number ;
+                email: string ;
+                userId: number ;I
+                googleId?: string ;
+                // startīrail: () => string ;
+                startTrail(): string ;
+                //getCoupon :(couponname: string, value: number)=>number
+                getCoupon (couponname: string, value: number):number
+        }
+
+        //onlly for reopening
+        interface User {
+                linkedInID: string ;
+        } // now object should have both user interface type
+
+        // for Extends
+        interface Admin extends User{
+            role :string ;
+        }
+
+
+- What is readOnly in Typescript ?
+ans :
+    1. In TypeScript, "readonly" is a modifier that can be applied to properties of an object or parameters of a function to indicate that 
+            their values cannot be changed once they are assigned.
+    2. This modifier ensures that the property or parameter remains constant throughout the lifetime of the object or function invocation.
+    Example : 
+
+        type Person = {
+            readOnly _id:string;
+            name : string;
+            age:number;
+            creditCard?:boolean;
+        }
+
+        const myUser = {
+            _id:122,
+            name : "prakash",
+            age:28,
+            creditCard:true
+        }
+
+        myUser._id= 68124 // not allow to change
+
+
+-does setter allow return type or not ? 
+ans : 
+    1. no , its only purpose to set object value
+
+    example :
+        Class User {
+                private _courseCount == 1
+
+                constructor ( public email: string , public name: string )
+                {
+                // private userId: string
+                }
+
+                get getAppleEmail(): string{
+                    return apple${this.email}`
+                }
+                get courseCount(): number {
+                    return this._courseCount
+                }
+
+                // set setCourseCount(courseCount) : void
+                set setCourseCount(courseCount){
+                    if(courseCount >= 1){
+                            theow new Error("should be more than 1")
+                    }
+                    _courseCount = courseCount
+                }
+        }

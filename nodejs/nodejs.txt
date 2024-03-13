@@ -1,0 +1,572 @@
+
+
+                                    Node.js Version		Release Date	npm
+                                    v21.7.1	-	        2024-03-08	  v10.5.0
+                                    v20.11.1	    	2024-02-13	  v10.2.4
+                                    v19.9.0	-	        2023-04-10	  v9.6.3
+                                    v18.19.1		    2024-02-13	  v10.2.4
+                                    v17.9.1	-	        2022-06-01	  v8.11.0
+
+
+
+
+-What is Node JS .
+ans : 
+    1. Node JS is runtime environment that allows JavaScript to run on the Server Side .
+    2. it is neither framework nor language .
+    3. it uses V8 engines same as used in google Chrome to execute JavaScript outside the browser .
+    4. Node.js provides a set of built-in modules and libraries that enable you to perform various server-side tasks,
+         such as handling "HTTP" requests, interacting with the file system "fs", and working with databases.
+
+- how node is a runtime environment on server side ? what is V8 ?
+ans :
+    1. same as above que ans .
+
+    "V8" -  1. V8 is an open-source JavaScript engine developed by Google .
+            2. It is written in C++ .
+            3. V8 is responsible for executing JavaScript code in the Chrome browser and Node.js runtime environment. 
+            4. V8 compiles JavaScript code(higher lavel) into machine code (machine level) using just-in-time (JIT) compilation techniques .
+
+- What is the Differences between runtime environment and framework ?
+ans :
+    1. "Runtime Environment" : 
+                            - it is primarily focus on "providing the neccesory infrastructure" for code execution .
+                            - Example : mamory management , I/O operations .
+    2. "framework" : :
+                            - it is primarily focus on "simplifying the development process" by offering a structure set of tools, libraries and best practise .
+
+- What is difference between NodeJS and ExpressJS ? 
+ans :
+    1. Node js is runtime environment that allows javascript to run on the server side .
+    2. ExpressJS is a framework built on top of NodeJS .
+        - it is designed to "simplify the developemnt process" of building web applications and APIs .
+        - it provides features like routing , middleware support etc .
+
+- What is difference between client-side and server-side ?
+ans :
+    1. Execution Environment:
+                -client-Side : Code is executed on the user's device (typically a web browser)
+                -server-Side : Code is executed on the server (hosting the website or web application) .
+    2. primarily language : 
+                -client-side : HTML , CSS , JavaScript
+                -server-side : JavaScript
+    3. Access to Resources : 
+                -client-side : Document , window object , web api .
+                -server-side : request , responce , databases , file system .
+    4. Performance :
+                -client-side :  Performance depends on the user's device and browser capabilities. Heavy client-side processing may impact page load times and responsiveness.
+                -server-side :  Performance depends on server hardware, network latency, and server-side processing capabilities .
+    5. responsibility : 
+                -client-side : handle UI Displaying , user interaction , client-side logic .
+                -server-side : handle business logic , data storage , authentication , authorization  .
+
+- what are the features of Node js ?
+ans :
+    1. single Threaded : Having a single-threaded model simplifies the development process.
+                         Developers don't need to deal with complexities related to "thread synchronization", "deadlocking mechanisms", and "race conditions", 
+                         which are common in multi-threaded environments.
+    2. asynchronous : Asynchronous programming allows tasks to be executed concurrently, meaning they can start and finish independently of each other.
+                     This enables programs to perform multiple operations simultaneously without waiting for each one to complete before moving on to the next.
+    3. Event-Driven : Event-driven programming is a programming paradigm where the flow of the program is determined by events that occur, rather than following a sequential order of execution.
+                     In event-driven programming, the program responds to events such as user actions, system notifications, or external signals.
+    4. V8 Engines : defination above
+    5. Cross-Plateform : Node.js is cross-platform, meaning it runs on various operating systems such as Windows, macOS, and Linux.
+                         This allows developers to write and deploy Node.js applications on different environments, making it flexible and versatile .
+    6. NPM : Node.js comes with npm, a powerful package manager that provides access to a vast ecosystem of open-source libraries and tools.
+    7. Built-in Modules: Node.js provides a set of built-in modules that extend its functionality for common tasks such as file system operations, networking, and HTTP handling.
+                         These modules are such as fs, http, path, and util .
+
+- What are disadvantage of node js ? 
+ans : not recommended to use where multithreading or cpu instenssive task is requires such as gamming ,chat app ,video calling .
+
+
+- what is single thread ?
+ans : 
+    single thread : it is programming concept in this tasks are executed in single thread, sequentially one after other . 
+                    when one task is completed next task is executed because of single thread .
+
+- What is synchronous Programming ?
+ans :
+    synchronous Programming : 
+                1. Synchronous programming is a programming paradigm where tasks are executed sequentially, one after another, in a blocking manner.
+                2. In synchronous programming, each task must wait for the previous one to complete before starting, and the program follows a predefined sequence of steps.
+
+- what is multi threading ?
+ans : 
+    Multi Threading : Multithreading is a programming concept which allows multiple threads to execute tasks concurrently within same process.
+                    - Multithreading enables concurrent execution of multiple tasks within a single process. Threads can execute independently of each other.
+
+
+- What is Asynchronous Programming ?
+ans : 
+    1.Asynchronous programming in Node.js refers to the ability to execute tasks concurrently without blocking the execution of other operations.
+    2. It allows Node.js applications to continue processing other tasks while waiting for slow I/O operations to complete . 
+    3. it is also known as non-blocking programming 
+
+    work : 
+        1. in node js tasks to be executed (for an event) . then it follow following steps :
+        2. Thread T1 is created first .
+        3. Thread T1 initiated Task1 ,Task2 ,Task3 and Task4 . it does not wait for complete individual task.
+        4. Thread T1 executes all task concurrently .
+
+- Differences Between Synchronous and Asynchronous ?
+ans : 
+    1. synchronous : -execute tasks in sequential manner .
+                     -blocking code execution
+       Asynchronous : execute tasks in concurrent manner .
+                     -non-blocking code execution
+
+- What are the Event , Even Emitter ,Event Queue , Event Loop and  Event Driven ?
+ans :
+    1. Event : An Event is a single that indicates that something has happened .
+                In programming, events can represent "user actions" (such as clicking a button or pressing a key),
+                system notifications (such as receiving data over a network),
+                any other kind of occurrence that the program needs to respond to.
+    2. "Event Emitter" : An event emitter is an object that emits events. In Node.js, the "EventEmitter class" is a core module that allows objects to emit "named events" that can be listened to by other parts of the program.
+    3. "Event Queue" : The event queue is a data structure that holds events that have occurred but have not yet been processed by the program.
+    4. "Event Loop" : The event loop is a fundamental part of asynchronous programming in Node.js. It is responsible for continuously checking the "event queue" for new events and executing their associated event handlers.
+    5. "Event-Driven" : Event-driven programming is a programming paradigm where the flow of the program is determined by events that occur, rather than following a sequential order of execution. 
+
+- How Event Driven Architecture Works ? 
+ans : 
+    -when a event is triggered (by user by clicke=ing or something) then event emitter emits the events .
+    -the emitted events are stored in event Queue in sequential order or FIFO order which will executed by event handlers.
+    -the event handlers executes the all events .
+    -event handlers takes help of event loop to get event to executed .
+    -Event Loop: Continuously checks the Event Queue for new events and dispatches events to handlers, preserving responsiveness.
+
+- how to setup Nodejs projects ?
+ans :
+    1. Download NodeJS Form google and install it .
+    2. Download VSCode Form google and install it .
+    3. create a new folder anywhere .
+    4. open vs code and open new Folder that created before .
+    5. open terminal and ruin commond - npm init -y 
+    6. create a file index.js 
+    7. write logic ind=side file and run it by using commond - node index.js
+
+- What is npm ?
+ans: 
+    1. npm stands for node package manager as such there is not fix name as npm in website itself .
+    2. it is used to manage the dependencies of project .
+    3. it helps the installation, update, and removal of packages from both local and global scopes.
+    4. it ensures that the correct versions of packages are installed .
+
+- What is Node Module folder ?
+ans :
+    1. it contains all the dependencies of project .
+    2. node_modules directory, is a special folder within a Node.js project that contains all the installed Node.js packages and their dependencies .
+    3. When you install packages using npm (Node Package Manager) or yarn, these packages are downloaded and stored in the node_modules directory.
+
+- what is package.json file and package.lock.json
+ans : 
+    1. package.json file contains metadata of project ( information of project ) like name ,version , script and dependencies .
+    Example :
+        - "name" : The name of the project.
+        - "version" : The version of the project.
+        - "description" : A brief description of the project.
+        - "main" : The entry point file of the project (e.g., index.js).
+        - "scripts" : Custom scripts for tasks such as running tests, building the project, or starting the application.
+        - "dependencies" : The project's runtime dependencies (packages required for the application to run).
+        - "devDependencies" : Dependencies needed for development purposes, such as testing frameworks or build tools.
+
+    2.package-lock.json:
+         The package-lock.json file is automatically generated by npm when dependencies are installed or updated in a project. It serves as a lockfile that contains the exact versions of all installed dependencies and their transitive dependencies.
+
+
+- what are modules in Node.
+ans : 
+    1. A modules contains "specific functionality" that can be easily reused within node.js application .
+    2. modules encapsulates the code and can be resued by importing exporting in other module .
+
+    myModule.js
+    function sayHello(){
+            clg("hello)
+    }
+
+    module.export = sayHello ;
+
+
+- What is Module Wrapper Function ?
+ans : 
+    each modules are wrapped inside a function before it is executed by application internally called module wrapper function 
+    example ;
+
+    function (exports, require, module , __filename , __dirname){
+
+         function sayHello(){
+            clg("hello)
+        }
+    }
+
+
+- Types of modules ?
+ans ; 
+    1. inbuild modules : fs (file system) , os (operating system) , https etc , 
+    2. Local modules : these are user defined modules created by devloper .
+    3. Third Party modules : it is external packages or libraries .
+
+
+- Explain "fs module" and also write all function of it ?
+ans ; 
+    1. The fs (File System) module in Node.js provides interaction with the file system.
+    2. it allows you to perform various operations such as reading from and writing to files, creating directories, deleting files, and more .
+
+    Fuinctions of FS Module :
+
+            ////////////////////////////////////////////////////////////////////////////////
+        1. "fs.readFile()": Reads the contents of a file asynchronously.
+
+            const fs = require('fs');
+
+            fs.readFile('example.txt', 'utf8', (err, data) => {
+                if (err) throw err;
+                console.log(data);
+            });
+
+            ////////////////////////////////////////////////////////////////////////////////
+        2."fs.readFileSync()": Reads the contents of a file synchronously.
+            const fs = require('fs');
+
+            const data = fs.readFileSync('example.txt', 'utf8');
+            console.log(data);
+
+            ////////////////////////////////////////////////////////////////////////////////
+
+        3. "fs.writeFile()": write the contents in a file asynchronously.
+
+            const fs = require('fs');
+
+            const content = 'Hello, world!';
+            fs.writeFile('example.txt', content, (err) => {
+                if (err) throw err;
+                console.log('File written successfully');
+            });
+
+            ////////////////////////////////////////////////////////////////////////////////
+        4. fs.writeFileSync(): write the contents in a file synchronously.
+
+            const fs = require('fs');
+
+            const content = 'Hello, world!';
+            fs.writeFileSync('example.txt', content);
+            console.log('File written successfully');
+            fs.appendFile(): Appends data to a file asynchronously.
+
+            ////////////////////////////////////////////////////////////////////////////////
+        5. fs.appendFile(): append the contents in a file asynchronously.
+
+            const fs = require('fs');
+
+            const content = 'New content to append';
+            fs.appendFile('example.txt', content, (err) => {
+                if (err) throw err;
+                console.log('Data appended to file');
+            });
+
+            ////////////////////////////////////////////////////////////////////////////////
+        6. fs.unlink(): Deletes a file asynchronously.
+
+            const fs = require('fs');
+
+            fs.unlink('example.txt', (err) => {
+                if (err) throw err;
+                console.log('File deleted successfully');
+            });
+
+            ////////////////////////////////////////////////////////////////////////////////
+        7.fs.mkdir(): Creates a directory asynchronously.
+
+            const fs = require('fs');
+
+            fs.mkdir('new_directory', (err) => {
+                if (err) throw err;
+                console.log('Directory created successfully');
+            });
+
+            ////////////////////////////////////////////////////////////////////////////////
+        8. fs.readdir(): Reads the contents of a directory asynchronously.
+
+            const fs = require('fs');
+
+            fs.readdir('.', (err, files) => {
+                if (err) throw err;
+                console.log('Files in the current directory:', files);
+            });
+
+
+
+- Explain "path module" and also write all function of it ?
+ans :
+    1. The path module in Node.js provides utilities for working with file paths .
+    2. It helps in manipulating file and directory paths in a platform-independent manner, ensuring consistency across different operating systems.
+
+    functions of Path module ;
+
+    const path = require('path');
+
+    const parsed = path.parse('/docs/file.txt');
+    console.log(parsed); // Output: { roots: "/" , dir: "/docs" , base : "file.txt" , ext:".txt" , name: "file" }
+
+
+            ////////////////////////////////////////////////////////////////////////
+        1.  path.join(): Joins path segments into a single path.
+
+            const path = require('path');
+
+            const filePath = path.join('/usr', 'local', 'bin', 'node');
+            console.log(filePath); // Output: /usr/local/bin/node
+
+            ////////////////////////////////////////////////////////////////////////
+        2. path.resolve(): Resolves the specified paths into an absolute path.
+            const path = require('path');
+
+            const absPath = path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
+            console.log(absPath); // Output: /path/to/current/working/directory/wwwroot/static_files/gif/image.gif
+
+            ////////////////////////////////////////////////////////////////////////
+        3.path.basename(): Returns the last portion of a path.
+            const path = require('path');
+
+            const fileName = path.basename('/path/to/file.txt');
+            console.log(fileName); // Output: file.txt
+
+            ////////////////////////////////////////////////////////////////////////
+        4.path.dirname(): Returns the directory name of a path.
+            const path = require('path');
+
+            const dirName = path.dirname('/path/to/file.txt');
+            console.log(dirName); // Output: /path/to
+
+            ////////////////////////////////////////////////////////////////////////
+        5.path.extname(): Returns the extension of a file path.
+            const path = require('path');
+
+            const extName = path.extname('/path/to/file.txt');
+            console.log(extName); // Output: .txt
+
+            ////////////////////////////////////////////////////////////////////////
+        6.path.normalize(): Normalizes a path, resolving '..' and '.' segments.
+            const path = require('path');
+
+            const normalizedPath = path.normalize('/path/to/../file.txt');
+            console.log(normalizedPath); // Output: /path/file.txt
+
+            ////////////////////////////////////////////////////////////////////////
+        7.path.relative(): Generates a relative path from one path to another.
+            const path = require('path');
+
+            const relativePath = path.relative('/path/to/file.txt', '/path/to/another/file.txt');
+            console.log(relativePath); // Output: ../another/file.txt
+
+            ////////////////////////////////////////////////////////////////////////
+        8.path.sep: A platform-specific path segment separator ('/' on POSIX systems, '' on Windows).
+            const path = require('path');
+
+            console.log(path.sep); // Output: \ (on Windows) or / (on POSIX)
+
+
+- Explain "OS module" and also write all function of it ?
+ans : 
+    1. The "OS module" in Node.js provides interaction with the operating system.
+    2. It allows you to access information about the system's architecture, environment variables, network interfaces, CPU usage, memory, and more.
+
+    Functions of OS Module.
+                    ///////////////////////////
+                    os.arch(): Returns the CPU architecture of the operating system.
+                    const os = require('os');
+                    console.log(os.arch()); // Output: x64
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.cpus(): Returns an array of objects containing information about each CPU/core.
+                    const os = require('os'); 
+                    console.log(os.cpus()); // Output: [{model: 'Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz', speed: 2800, times: {user: 3949150, nice: 0, sys: 1718870, idle: 328808760, irq: 0}}, ...]
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.totalmem(): Returns the total amount of system memory in bytes.
+                    const os = require('os');
+                    console.log(os.totalmem()); // Output: 17179869184 (for example)
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.freemem(): Returns the amount of free system memory in bytes.
+                    const os = require('os');
+                    console.log(os.freemem()); // Output: 11744794624 (for example)
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.hostname(): Returns the hostname of the operating system.
+                    const os = require('os');
+                    console.log(os.hostname()); // Output: MyComputer
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.type(): Returns the operating system name.
+                    const os = require('os');
+                    console.log(os.type()); // Output: Windows_NT (for example)
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.platform(): Returns the operating system platform.
+                    const os = require('os');
+                    console.log(os.platform()); // Output: win32 (for example)
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.release(): Returns the operating system release.
+
+                    const os = require('os');
+
+                    
+                    console.log(os.release()); // Output: 10.0.18363 (for example)
+
+
+                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    os.networkInterfaces(): Returns an object containing information about network interfaces.
+
+                    const os = require('os');
+
+                    console.log(os.networkInterfaces()); // Output: {lo: [{address: '127.0.0.1', netmask: '255.0.0.0', family: 'IPv4', mac: '00:00:00:00:00:00', internal: true}], ...
+
+
+- Explain "Http module" and also write all function of it  with example?
+ans : 
+    1. The "http module" in Node.js provides functionality to create HTTP servers and make HTTP requests
+    2. It allows you to interact with the HTTP protocol, enabling you to build web servers, handle incoming requests, and make outgoing requests to other servers.
+
+    function of HTTP
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                1.http.createServer(): Creates an HTTP server instance.
+                const http = require('http');
+
+                const server = http.createServer((req, res) => {
+                    res.writeHead(200, {'Content-Type': 'text/plain'});
+                    res.end('Hello, World!');
+                });
+
+                server.listen(3000, () => {
+                    console.log('Server is running on port 3000');
+                });
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+               2. server.listen(): Starts the HTTP server to listen for incoming requests on the specified port.
+                const http = require('http');
+
+                const server = http.createServer((req, res) => {
+                    res.writeHead(200, {'Content-Type': 'text/plain'});
+                    res.end('Hello, World!');
+                });
+
+                server.listen(3000, () => {
+                    console.log('Server is running on port 3000');
+                });
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                server.on('request', callback): Event listener for incoming HTTP requests.
+                const http = require('http');
+
+                const server = http.createServer();
+
+                server.on('request', (req, res) => {
+                    res.writeHead(200, {'Content-Type': 'text/plain'});
+                    res.end('Hello, World!');
+                });
+
+                server.listen(3000, () => {
+                    console.log('Server is running on port 3000');
+                });
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                http.get(): Makes an HTTP GET request to the specified URL.
+                const http = require('http');
+
+                http.get('http://example.com', (res) => {
+                    let data = '';
+
+                    res.on('data', (chunk) => {
+                        data += chunk;
+                    });
+
+                    res.on('end', () => {
+                        console.log(data);
+                    });
+                });
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                http.request(): Makes an HTTP request to the specified URL with custom options.
+                const http = require('http');
+
+                const options = {
+                    hostname: 'www.example.com',
+                    port: 80,
+                    path: '/',
+                    method: 'GET'
+                };
+
+                const req = http.request(options, (res) => {
+                    let data = '';
+
+                    res.on('data', (chunk) => {
+                        data += chunk;
+                    });
+
+                    res.on('end', () => {
+                        console.log(data);
+                    });
+                });
+
+                req.end();
+
+
+- How Node.js works ?
+ans :
+    1. say sometging about node js
+
+    works : 
+    1. when user sends any request it is pushed inside a "Event queue" where Event loop selectes blocking event and no blocking events .
+    2. non-blocking events are executed immediatly and sent the responce 
+    3. while blocking events  are pushed into "Thread pool" . where all events are assigned with different thered / workers and executed .  
+
+    1.Event Queue and Event Loop:
+        -.When a user sends a request, Node.js doesn't push it directly into an "Event queue." Instead, the request is handled by the event loop, which manages all asynchronous operations.
+        -.The event loop continuously checks for events, including I/O operations, timers, and callbacks, and processes them in a non-blocking manner.
+    2.Handling Non-blocking Events:
+        -Non-blocking events, such as asynchronous I/O operations (e.g., reading files, making HTTP requests), are executed asynchronously by Node.js.
+        -These operations don't block the event loop, allowing Node.js to handle multiple requests concurrently without waiting for each operation to complete.
+    3.Blocking Events and Thread Pool:
+        -In Node.js, blocking operations are executed separatly by "thread pool" .
+        -Node.js itself does not have a built-in thread pool. Instead, it relies on the underlying platform's capabilities, such as "libuv" for asynchronous I/O operations .
+
+
+-What is Prisma?
+ans: 
+    Prisma is like a translator between your application and database.
+    It helps to interact with your database without writing raw SQL queries.
+    Instead, you define your database schema using a simple and declarative language,
+     and Prisma generates a type-safe and auto-generated query builder for you to use in your code.
+    This makes database access more intuitive and less error-prone.
+
+    Prisma simplifies database access by providing a type-safe and auto-generated query builder,
+        making it easier to interact with relational databases in your applications.
+    It offers a balance between the flexibility of raw SQL queries and the complexity of traditional ORMs, making database interactions more intuitive and developer-friendly.
+
+-what is graphQL ?
+ans :
+    GraphQL is a modern way to query and manipulate data from a server. It's like a language for asking for exactly what you want from your server's database.
+
+    Ask for What You Need: Instead of fetching fixed data from predefined endpoints like in traditional REST APIs, with GraphQL, you can ask for exactly the data you need using a single query. This reduces over-fetching and under-fetching of data.
+
+    Flexible Queries: GraphQL queries are hierarchical and match the structure of the response data. This means you can request nested data in a single query, making it more efficient and reducing the need for multiple API calls.
+
+    Strongly Typed Schema: GraphQL APIs are defined by a schema, which specifies the types of data that can be queried and the operations that can be performed. This schema acts as a contract between the client and server, providing clarity and validation.

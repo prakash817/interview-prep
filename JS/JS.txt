@@ -1,0 +1,1270 @@
+
+-1. What is Javascript ? 
+ans : 
+    1. JavaScript is a High-level programming language commonly used for creating dynamic websites.
+    2. JavaScript is single-threaded synchronous programming language .
+    3. It is primarily executed in web browsers, allowing developers for DOM manupulation and web APIs .
+    4. JavaScript can also be used outside of web browsers, such as in server-side development (Node.js) and mobile app development (React Native).
+
+
+-2. What is single Threaded in JavaScript ?
+ans : 
+    1.Single Threaded Nature: 
+        - JavaScript is single-threaded programming language,it means it can only execute one line of code at a time.
+        - it runs the code from top to bottom and it executes line of codes sequentially .
+        - Each statement is processed in order, and execution proceeds to the next statement only after the current one has been completed.
+
+
+-3. what is syncronous means in Javascript ?
+ans : 
+    1.Syncronous :  
+            1. In javascript, synchronous refers to the execution of codes in blocking manner , where codes are executed one after other in sequential order .
+            2. when synchronous operation is performed in javascript it wait for current operation to complete to execute the next operation .
+
+
+-4. what is blocking behavior of javascript ?
+ans :   
+    1. As we know javascript is single threaded synchronous programming language , so it executes code in sequestial order .
+    2. it waits for current task to complete before moving to next task .             
+    3. some time task takes much more time which to complete the current task and block the thread for that time frame .
+    4. this behavior is called blocking behavior of JavaScript.
+
+
+-5. What is the difference between "var", "let" and "const" in JavaScript?
+ans : 
+    Feature	                    var	                let	                         const
+
+    1.Scope	                    Function scope  	Block scope	                 Block scope
+
+    2.Hoisting	                Hoisted	            Hoisted(in TDZ)	             Hoisted(in TDZ)
+
+    3.ReAssignment	            Allowed	            Allowed	                     Not allowed (constant value)
+
+    4.ReDeclaration	            Allowed	            Not allowed	                 Not allowed
+    
+    5.Initialization	        Initialized	        Not initialized	            Must be initialized during declaration
+                                with undefined      (temporal dead zone)
+
+    6.Global Object 	            Created on global 	Not created on 	             Not created on global object
+      Property                    object (window in     global object
+                                         browser)
+
+    details  :
+    1.Scope:
+        "var": Scoped to the nearest function scope.
+        "let and const": Scoped to the nearest enclosing block (commonly a {} pair), including "for", "if", "while", and "function" blocks.
+    
+    2.Hoisting:
+        -"var": Hoisted to the top of its enclosing function or global scope. Initialized with undefined.
+        -"let and const": Also hoisted to the top of their enclosing block but not initialized. Attempting to access them before their declaration results in a ReferenceError.
+
+    3.Reassignment:
+        -var, let, and const: All can be reassigned.
+        -const: Cannot be reassigned to a new value after declaration. However, if it's an object or array, its properties or elements can be mutated.
+
+    4.Redeclaration:
+        -"var": Allows redeclaration within the same scope.
+        -"let and const": Do not allow redeclaration within the same scope. Redeclaring a variable with let or const in the same scope results in a SyntaxError.
+
+    5.Temporal Dead Zone (TDZ):
+        -"var": No temporal dead zone. Variables are hoisted and initialized with undefined.
+        -"let and const": Have a temporal dead zone where accessing the variable before its declaration results in a ReferenceError.
+
+    6.Initialization:
+        -"var": Initialized with undefined.
+        -let: Not initialized (temporal dead zone). Must be assigned a value before accessing it.
+        -const: Must be initialized during declaration. Cannot be declared without an initial value.
+
+    7.Global Object Property:
+        -"var": Variables declared with var become properties of the global object (window in a browser environment).
+        -"let and const": Do not create properties on the global object.
+
+
+-6. What is the difference between "==" and "===" operators in JavaScript ?
+ans : 
+    1.The "==" operator only compares the value of two operands .
+    2.The "===" operator compares both value and their data Type .
+
+    Example : 
+                10 == '10'; // true (value comparison)
+                10 === '10'; // false (value and type comparison)
+
+
+-7. Explain the concept of "hoisting" in JavaScript ?
+ans : 
+    1. Hoisting is a Default behaviour of JavaScript .
+    2. where variable and function declarations are moved to the top of their containing scope during the compilation phase,
+        regardless of where they are actually written in the code.
+    3. when the javascript code executed it creates Global Execution Context which is having two phase execution phase and memory allocation phase .
+        it first perform memory creation phase then execution phase .
+            1. memory creation phase : in this phase all variable and functions are assigned memory in execution context and variables are  assigned "undefined" placeholder .
+            2. execution phase : in this phase all variable are assigned with value and functions are executed in order .
+    4. Variable declarations (var, let, and const) are hoisted to the top of their containing scope. However, only the declarations are hoisted, not the value.
+    5. For "var" variables, the variable is initialized with undefined during hoisting. This means you can access and use a var variable before it is declared in the code.
+    6. For "let" and "const" variables, although they are hoisted in "temporal deadZone", they are not initialized. Attempting to access them before the declaration results in a "ReferenceError".
+    7. Function declarations are fully hoisted, including both the "function name" and its "body". This means you can call a function before it is declared in the code, and it will work as expected.
+    8. Function expressions (functions assigned to variables) are not hoisted in the same way.arrow Function
+
+    Example : 
+        console.log(x); // undefined
+        var x = 5;
+
+        console.log(y); // ReferenceError: Cannot access 'y' before initialization
+        let y = 10;
+
+        sayHello(); // Hello
+        function sayHello() {
+            console.log('Hello');
+        }
+
+        sayHi(); // TypeError: sayHi is not a function
+        var sayHi = function() {
+            console.log('Hi');
+        };
+
+
+-8. Explain Temporal Dead Zone (TDZ) in JavaScript ?
+ans :
+    1.Temporal Dead Zone (TDZ) is nothing but period of time .
+    2.it is time between when varibale declaired and inintialized value of variable . accessing this variable during TDZ causing "Refrrence Error" . 
+    3.TDZ is behaviour occurs with variable declared with "let" and "const" keywords .
+     
+
+-9. Explain Scope and Scope Chain in javascript ?
+ans : 
+    scope : Scope in programming is a "region" where variables and functions are accessible and how long they exist . outside of this region it is not accessible.
+    1. Global Scope : Global scope is the only scope in which vriable can be accessed from anywhere in code . it is default behaviour
+    2. Local Scope or functional Scope : a variable declared inside Local scope can be only accessed inside a function only , outside accessing caused error. 
+    3. block 
+
+
+-10. What is Task / Event Queue ?
+ans : 
+    1.Event Queue:
+        When an asynchronous operation like a "network request" or "a timer", is initiated, it doesn't block the execution of the main thread.
+        Instead, the operation is offloaded( transferring the responsibility of executing a task ) to the browser or Node.js runtime environment.
+        Once the operation completes, a corresponding event is placed in the event queue.
+
+
+-11. What is Priority Queue in event loop ?
+ans : 
+    1.a "priority queue" is a data structure used to manage tasks with different priorities.
+    2.In the event loop, tasks can have different priorities based on their nature and source, such as user input events, timer callbacks, or asynchronous I/O operations.
+    Example :
+         user input events like "clicks" or "keyboard input" may have higher priority than timer callbacks or network requests
+
+
+-12. What is call Stack ?
+ans : 
+    1 . Call Stack:
+         -The call stack is a data structure that keeps track of all function calls and their execution context.
+         -When the JavaScript engine encounters a function call, it adds it to the call stack and executes it.
+         -If a function calls another function, it gets added on top of the previous one, creating a stack of function calls.
+
+
+-13. What is the "Event Loop" in JavaScript ?
+ans :
+    1. As we know JavaScript is syncronous programming language which sometime block the code , to perform asyncronous operation we need event loop mechanism.
+    2. The "Event loop" is a mechanism in JavaScript that allows asynchronous operations to be executed in a non-blocking manner.
+        -working of Event Loop :
+            1. It continuously checks the call stack and the task queue / Event Queue .
+            2. when call stack is empty ( it means all syncrounous operations are executed ) .
+            2. The event loop takes the first event from the "event queue" and pushes it onto the "call stack", allowing it to be executed.
+            3. This process repeats until all asynchronous operations are processed and the call stack becomes empty.
+
+
+-14. What are the different "data types" in JavaScript ?
+ans : 
+    data types : it gives information about variable's type .
+    there are 2 categories of data Types :-
+        1.Primitive Data Types
+        2.Non-primitive Data Types
+    
+    1.Primitive Data Types -> 
+            1.string
+            2.Number
+            3.Boolean
+            4.null
+            5.undefined
+            6.symbol
+            
+    2.Non-primitive Data Types ->
+            1.Object
+            2.Array
+            3.Function
+
+
+-15. What is a closure in JavaScript ?
+ans : 
+    1. "Closure is the javascript function, a function bundled together (enclosed) along with its lexical environment. is called closure"
+    2.  Closure is the combination of a function itself with its outher function's scope." it means inner function can access value of uter function .
+    3.  It has access to its own scope, the outer function's scope, and the global scope.
+    4.  it can access the variable after the outer function has finished executing.
+    5.  closure remember the varibale's value of its outer function even aftrer function is removed .
+
+    Example: 
+    function outerFunction() {
+        let outerVariable = 'I am from the outer scope';
+        
+        function innerFunction() {
+            console.log(outerVariable);
+        }
+        
+        return innerFunction;
+    }
+
+    const myClosure = outerFunction();
+    myClosure(); // Output: I am from the outer scope
+    
+    lexical scope : lexical scope is scope of a function where function can access variable of its outer function's scope.
+
+
+-16. How does JavaScript implement closures ?
+ans : 
+    1.JavaScript implements closures by creating a lexical environment for each function during its creation. 
+    2.This lexical environment includes references to all variables in the function's outer scope.
+    3.When a function is defined within another function, it captures references to these outer variables, creating a closure.
+    4.As a result, the inner function retains access to the variables even after the outer function has returned.
+
+    Example same as above .
+
+
+-17. what is the mean of lexical scope ? 
+ans : 
+    1. in lexical scope ,the word laxical stands for lexographically order .
+    2. Lexical scope, also known as static scope, is a concept in programming languages that determines the visibility and accessibility of variables and functions based on their location in the source code.
+
+    example : 
+        1.When you look for something (like a variable) inside a box, you first check inside that box. 
+          If you find it, great! If not, you look in the box directly above it. You keep doing this
+          until you either find what you're looking for or you reach the top box.
+
+
+-18. What is the difference between "null" and "undefined" in JavaScript?
+ans : 
+    "null" and "undefined" both are data type s in javascript but both have different purpose -
+    Defination : 
+        1.undefined: "undefined" Indicates a variable that has been declared but has not been assigned any value yet .
+        1.null: "null" Indicates a variable that has been declared but assigned "null" value to that variable .
+                 Represents the intentional absence of value. It is explicitly assigned .
+        Example : var a = null; // null
+                  var b;        // undefined
+    Type : 
+        1.null: "typeof null" returns 'object', which is often considered a historical mistake in JavaScript. although null is datatype itself 
+        2.undefined: "typeof undefined" returns 'undefined'.
+    Assignment:
+        1. null: Can be explicitly assigned to a variable to indicate that it has no value.
+        2. undefined: Automatically assigned to variables that have been declared but not initialized . 
+
+
+-19. What are truthy and falsy values in JavaScript ?
+ans : 
+    -Falsy value 
+        1. false 
+        2. 0
+        3. null
+        4. undefined
+        5. " " (empty string)
+        6. NaN
+
+
+-20. How do you iterate over an object's properties in JavaScript?
+ans : 
+    -You can use different methods to iterate over an object's properties. Example:
+        1. for...in loop 
+        2. Object.keys(),
+        3. Object.values(),
+        4. Object.entries()
+         
+
+      Ex:1.   var person = { name: 'John', age: 30 };
+
+            for (var key in person) {
+                console.log(key + ': ' + person[key]);
+            }
+     Ex.2  object.keys(person).forEach(key => console.log(key + ': ' + person[key]))
+     Ex.3  object.values(person).forEach(val => console.log(val))
+     Ex.4  object.entries(person).forEach(val => console.log(val[0] ,":",val[1]))
+            where : const person = {
+                                        firstName: 'John',
+                                        lastName: 'Doe',
+                                        age: 30
+                                    };
+                    after object.entries(person) => [["firstName",'John'],["lastName ,'Doe'],["age" , "30"]]    
+
+
+-21. What is a "callback function" in JavaScript ?
+ans : 
+    1. a function passed as an argument to another function ( basically Higher Order Function ) is called callback function . 
+    2. which is then invoked inside the HOF function to complete some kind of action or operation .
+    3. Callback functions are commonly used in asynchronous operations to handle the result or response of an asynchronous task.
+    4. callback can be anonyous or named function .
+
+    Example :
+            1. anonymous function as callback
+                setTimeOut(()=>{
+                        conosle.log("abc")
+                },1000)
+
+            2. named function as callback
+                function fetchData(callback) {
+                    // Simulated asynchronous operation
+                    setTimeout(function() {
+                        var data = 'Some data';
+                        callback(data);
+                    }, 1000);
+                }
+
+                function processData(data) {
+                    console.log('Processed data:', data);
+                }
+
+                fetchData(processData);
+
+
+-22. How do you handle asynchronous operations using callback functions?
+ans : 
+    1. Asynchronous operations are typically handled using callback functions by passing the callback function as an argument to the asynchronous function.
+    2. When the asynchronous operation completes, the callback function is invoked with the result.
+        example same as above
+
+
+-23. What is "callback hell" and how to avoid it?
+ans :
+    1.Callback hell is a situation in asynchronous JavaScript programming when multiple nested callbacks are used to handle asynchronous operations. This can result in deeply nested and unreadable code .
+    2.The code are difficult to read, understand, and maintain.
+    3.It can be avoided by using promises or async/await syntax to improve code structure and readability.
+
+
+-24. Explain the concept of promises in JavaScript ?
+ans : 
+    1. Promise is a object in Javascript .
+    2. It's a way to handle asynchronous operation such as like data fetching from server or reading a file .
+    3. A Promise can be in one of three states:
+        1.Pending (not fulfilled or not rejected yet),
+        2.Fulfilled
+        3.Rejected 
+    4.Handling Results:
+        -You can attach callbacks to a Promise using .then() to handle the eventual result (fulfilled)
+        -or .catch() to handle errors (rejected). 
+    5.Chaining: 
+        -Promises can be chained together using multiple .then() calls.
+        -This allows you to perform sequential asynchronous operations or transformations on the result of a previous operation(result of previous .then).
+
+        Example : 
+        // Example of a Promise representing a simulated asynchronous operation (fetching data)
+
+        const fetchData = new Promise((resolve, reject) => {
+        // Simulating fetching data after 2 seconds
+        setTimeout(() => {
+            const data = { name: 'John', age: 30 };
+            // Resolve the Promise with the fetched data
+            resolve(data);
+            // Reject the Promise (simulating an error)
+            // reject('Error: Unable to fetch data');
+        }, 2000);
+        });
+
+        // Using the Promise
+        fetchData
+        .then(data => {
+            console.log('Data fetched successfully:', data);
+            // Perform further operations with the fetched data
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            // Handle errors gracefully
+        });
+
+
+-25. What is Promise chaining, and how does it work ?
+ans :
+    1. Promise chaining is a technique used in JavaScript to execute multiple asynchronous operations in sequence.
+    2. It allows you to perform a series of asynchronous tasks one after the other, where each task depends on the result of the previous one.
+
+    -Return a Promise: Each .then() callback in a Promise chain returns a Promise, which allows the next .then() to be chained onto it.
+    -Passing Data: Data produced by one asynchronous operation can be passed to the next .then() callback in the chain.
+    -Error Handling: Errors occurring in any part of the chain can be caught and handled using .catch() at the end of the chain.
+
+    Example : 
+        // Example of Promise chaining
+        fetchData()
+        .then(data => {
+            console.log('Step 1: Data fetched successfully:', data);
+            return processData(data);
+        })
+        .then(result => {
+            console.log('Step 2: Data processed successfully:', result);
+            return performAction(result);
+        })
+        .then(finalResult => {
+            console.log('Step 3: Final result:', finalResult);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        // Utility functions
+        function fetchData() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+            const data = { name: 'John', age: 30 };
+            resolve(data);
+            }, 2000);
+        });
+        }
+
+        function processData(data) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+            const processedData = { ...data, isAdmin: true };
+            resolve(processedData);
+            }, 1000);
+        });
+        }
+
+        function performAction(result) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+            const finalResult = { ...result, action: 'Completed' };
+            resolve(finalResult);
+            }, 1500);
+        });
+        }
+
+
+-26. Explain the concept of parallel execution using Promise.all() ?
+ans :
+    0. parallel execution is achived by Promise.all() method. ( chainning is sequentially )
+    1. Promise.all() in JavaScript allows to perform multiple asynchronous operations simultaneously and wait for all of them to complete.
+    2. It's particularly useful when you have independent asynchronous tasks that can run concurrently .
+
+    Promise.all() => 
+        1. Promise.all() takes an array of Promises as its argument.
+        2. Promise.all() returns a single Promise that resolves when all Promises in the array have resolved, or rejects if any of the Promises in the array reject.
+        3. When all Promises resolve, Promise.all() returns an array containing the resolved values of each Promise, in the same order as the original array of Promises.
+
+        Example :
+            const promise1 = fetchData('url1'); // Asynchronous operation 1
+            const promise2 = fetchData('url2'); // Asynchronous operation 2
+            const promise3 = fetchData('url3'); // Asynchronous operation 3
+
+            Promise.all([promise1, promise2, promise3])
+            .then(results => {
+                console.log('All promises resolved:', results);
+                // Handle the combined results
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors if any of the Promises reject
+            });
+
+
+-27. What is the role of Promise.finally()? 
+ans :
+    1. The Promise.finally() method in JavaScript allows a function to be executed regardless of whether the Promise is fulfilled or rejected.
+    2.  It is commonly used to perform cleanup tasks .
+    Example : 
+            fetchData()
+                .then(data => {})
+                .catch(error => {})
+                .finally(() => {});
+
+
+-28. Explain the concept of "higher-order functions" and how they relate to callback functions ?
+ans :
+    1. "Higher-order functions" are functions that can accept other functions as arguments and/or return functions as output.
+    2. "Higher-order functions" can also return functions as results. 
+
+    Examples of Higher-order Functions:
+        1.map() :
+            -The map() method in JavaScript is a higher-order function commonly used to transform/modify elements of an Original array by applying a specified function to each element.
+            - it returns new Modify array .
+            example :
+                    const numbers = [1, 2, 3, 4, 5];
+                    const squaredNumbers = numbers.map(num => num * num);
+                    console.log(squaredNumbers); // Output: [1, 4, 9, 16, 25]
+
+        2.filter(): 
+            -The filter() method is a higher-order function. It creates a new array with all elements that satisfy the given condition provided to function.
+            example :
+                    const numbers = [1, 2, 3, 4, 5];
+                    const evenNumbers = numbers.filter(num => num % 2 === 0);
+                    console.log(evenNumbers); // Output: [2, 4]
+
+        3.reduce(): 
+            -The reduce() method executes a reducer function (that you provide) on each element of the array, 
+            -reduce method return a single output value.
+            example :
+                const numbers = [1, 2, 3, 4, 5];
+                const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+                console.log(sum); // Output: 15 (1 + 2 + 3 + 4 + 5)
+
+        4.setTimeout(): The setTimeout() function in JavaScript is also a higher-order function. It takes a callback function as its first argument and a delay time in milliseconds as its second argument.
+            example : 
+                    setTimeout(() => {
+                    console.log('Delayed function execution');
+                    }, 1000);
+
+
+-29. What is arrow functions in JavaScript and how is it different from regular functions?
+ans : 
+    1. Arrow Function is introduced in ES6 .
+    2. Arrow function is sorter way to write the regular function in Javascript .
+    3. Arrow functions do not require the "function" keyword to be defined.
+    4. if the function body consists of a single expression, then there is no need of write "return" keyword and brackes also .
+        example : // Implicit return
+                    const double = (x) => x * 2;
+    5. Arrow functions do not have their own "this" context. Instead, they inherit the "this" value from the surrounding lexical context.
+        example : 
+            -with arrow function
+
+                    const obj = {
+                        name: 'John',
+                        greet: () => {
+                            console.log('Hello, ' + this.name); // `this` refers to the global object, not `obj`
+                        }
+                    };
+                    obj.greet(); // Output: Hello, undefined
+            
+            -with regular funcntion
+                    const obj = {
+                        name: 'John',
+                        greet: function(){
+                            console.log('Hello, ' + this.name); // `this` refers to the global object, not `obj`
+                        }
+                    };
+                    obj.greet(); // Output: Hello, undefined
+            
+    6. Arrow functions do not have their own "arguments object". However, they can access the "arguments object" of the enclosing non-arrow function.
+        example :
+
+            function sum() {
+                const add = () => {
+                    console.log(arguments); // Accessing `arguments` of `sum`
+                };
+                add();
+            }
+            sum(1, 2, 3); // Output: [1, 2, 3]
+
+    7.Arrow functions cannot be used as constructors .
+        example :
+            const Foo = () => {};
+            const foo = new Foo(); 
+        
+
+-30. What is the "this" keyword in JavaScript and how does it work ?
+ans :
+    1. "this" is a keyword in Javascript .
+    2. The "this" keyword refers to the context of current object , within which a "this" is called .
+    3. the context of a this can be changed with the help of different mathod (call ,apply and bind) ; 
+    4. It depending on how the function is called like arrow function or normal function . 
+
+    BEHAVIOUR OF "this" : 
+        1.When "this" used in the global scope, this refers to the global object (window in browsers, global in Node.js).
+            example : console.log(this === window); // Output: true
+        2.When "this" used in a function that is called as a "method of an object", this refers to the object that owns the function .
+            example : 
+                const person = {
+                            name: 'John',
+                            greet: function() {
+                                console.log('Hello, ' + this.name);
+                            }
+                        };
+
+                        person.greet(); // Output: Hello, John
+
+        3. In event handlers (e.g., click event handlers), "this" refers to the element that triggered the event.
+            example : 
+                <button id="myButton">Click Me</button>
+
+                <script>
+                document.getElementById('myButton').addEventListener('click', function() {
+                    console.log('Button clicked:', this); // Output: Button element
+                });
+                </script>
+
+
+-31. What are modules in JavaScript and how do you use them? 
+ans : 
+    1. module is separate file in javascript .
+    2. it allow you to split your code into separate files and import/export into another function .
+        example : 
+            // Module 1: math.js
+                export function add(a, b) {
+                return a + b;
+                }
+
+                // Module 2: main.js
+                import { add } from './math.js';
+                console.log(add(3, 5)); // Output: 8
+
+
+-32. What are the different ways to create objects in JavaScript? 
+ans : 
+    -Objects in JavaScript can be created using 
+            1. object literals => var person = { name: 'John', age: 30 };
+
+            2. constructor functions => 
+                function Person(name, age) {
+                                this.name = name;
+                                this.age = age;
+                            }
+                var person = new Person('John', 30);
+
+            3. Object.create() method
+                var person = Object.create(null);
+                person.name = 'John';
+                person.age = 30;
+
+
+-33. what is factory function ? 
+ans : 
+    1. A factory function in JavaScript is a simple function which is used to create multiple instances with same property. 
+    2. it internally create an object and returns an object. 
+    3. It is a pattern for creating objects using "function call" , whereas constructor function use "new" keyword .
+    4. This pattern provides a way to encapsulate object creation logic and allows for easy creation of multiple instances with similar properties and behaviors.
+
+    exmaple :
+                    function createPerson(name, age) {
+
+                        let person = {} 
+                                // Properties
+                                person.name= name ;
+                                person.age= age ;
+
+                                // Method to greet
+                                person.greet = function() {
+                                console.log('Hello, my name is ' + this.name + ' and I am ' + this.age + ' years old.');
+                                }
+
+                            return person ;
+                    }
+
+                    // Creating instances of person objects using the factory function
+                        const john = createPerson('John', 30);
+                        const jane = createPerson('Jane', 25);
+
+                to convert factory function into constructor function we have to do few steps :
+                    1. change name into camelcase like "CreatePerson"
+                    2. remove object initialization and return statement .
+                    3. use "this" keyword instead object . 
+                    4. initialize instance using "new" keyword
+
+                    function CreatePerson(name, age) {
+                                // Properties
+                                this.name= name ;
+                                this.age= age ;
+
+                                // Method to greet
+                                this.greet = function() {
+                                console.log('Hello, my name is ' + this.name + ' and I am ' + this.age + ' years old.');
+                                }
+
+                    }
+                
+
+                // clas  contructer :
+                class CreatePerson {
+                    constructor(name, age) {
+                        // Properties
+                        this.name = name;
+                        this.age = age;
+                    }
+
+                        // Method to greet
+                    greet() {
+                        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+                    }
+                }
+
+
+-34. what is constructor function ? 
+ans :
+    1. A constructor function in JavaScript is a special type of function that is used to create objects.
+    2. It serves as a blueprint for creating multiple instances of objects with similar properties and behaviors.
+    3. it is instensiated using "new" keyword ;
+    4. "constructer function" is created using with the help of "this" .
+    5. contructor function name started with capital letter .
+
+    example : 
+        function Person(name, age) {
+                    // Properties
+                    this.name = name;
+                    this.age = age;
+
+                    // Method to greet
+                    this.greet = function() {
+                        console.log('Hello, my name is ' + this.name + ' and I am ' + this.age + ' years old.');
+                    };
+            }
+
+            //Creating instances
+            const john = new Person('John', 30);
+            const jane = new Person('Jane', 25);
+
+
+-35. Explain call , apply and Bind method of JavaScript ? 
+ans :
+    1. these methods helps to control how a function is called and explicitly set the "this" context for the function being called.
+    1. The "call", "apply", and "bind" methods in JavaScript are used to change the context of the "this" keyword within a function.
+    2. They are commonly used for managing context and passing arguments in JavaScript functions.
+
+    1."call()" Method = > 
+        - call method is used to explicitly set the "this" context for the function being called and takes arguments by comma(,) seperator .
+        - call() is used to invoke a function with specified explicitly "this" value and individual arguments provided as separate by comma(,).
+        - structure : function.call(thisObject , arg1,arg2) ;
+        -Example :
+            function greet() {
+                 console.log(this.name);
+            }
+
+            const person = { name: 'John' };
+            
+            //with arguments
+            greet.call(person); // Output:  John
+
+             function greet(param) {
+                 console.log(param + this.name);
+            }
+
+            const person = { name: 'John' };
+            greet.call(person, "hello"); // Output: hello, John
+        
+    2."apply()" method = >
+        - apply() method is used to explicitly set the "this" context for the function being called and takes arguments in array .
+        -"apply()" method is similar to call, but it accepts arguments as an array.
+        -structure : function.apply(thisArg, [argsArray])
+        -Example : 
+            function greet() {
+                console.log('Hello, ' + this.name);
+            }
+
+            const person = { name: 'Jane' };
+
+            // Using apply method to invoke greet with person object as this value and an array of arguments
+            greet.apply(person); // Output: Hello, Jane
+
+            with multiple arguments: 
+            function greet(message, punctuation) {
+                console.log(message + ', ' + this.name + punctuation);
+            }
+
+            const person = { name: 'Alice' };
+
+            // Using apply() to invoke the greet function with a specific context (person) and multiple arguments
+            greet.apply(person, ['Hey', '!']); // Output: Hey, Alice!
+
+
+
+    3."bind()" method =>
+        -"bind()" method is similer to "call()" method but have some extra feature .
+        -"bind()" method returns new function which can be call later.
+        -It is particularly useful when you want to preserve the context of a function for later invocation.
+        -Structure  : function.bind(thisArg, arg1, arg2, ...)
+        -Example: 
+
+            function greet() {
+                console.log('Hello, ' + this.name);
+            }
+
+            const person = { name: 'Alice' };
+
+            // Using bind method to create a new function with person object as this value
+            const greetPerson = greet.bind(person);
+
+            // Invoking the newly created function
+            greetPerson(); // Output: Hello, Alice
+
+
+-36. What is the difference between setTimeout() and setInterval()?
+ans :
+    1. setTimeout() executes a function once after a specified delay,
+        while setInterval() executes a function repeatedly, with a fixed time delay .
+
+    2. Structure : 
+            -setTimeout(callback , timeInMS) 
+            -setInterval(callback , timeInMS) 
+
+    3. Example : 
+        setTimeout(function() {
+          console.log('Delayed');
+        }, 2000);
+
+        setInterval(function() {
+         console.log('Repeated');
+        }, 1000);
+
+
+-37. What is function currying in JavaScript ? 
+ans : 
+    1. Function currying is the process of transforming a function with multiple arguments into a sequence of nested functions having single arguments .
+    2. each function taking a single argument.
+    3. Example : 
+        -normal function : 
+            function add(x, y) {
+               return x + y;
+            }
+            add(10, 5)
+
+        currying function :
+            function add(x) {
+                return function(y) {
+                    return x + y;
+                };
+            }   
+
+            const add5 = add(5); // Returns a function that adds 5 to its argument
+            console.log(add5(3)); // Output: 8 
+
+
+-38. Explain infinte currying ?
+ans : 
+    1. it takes infinte arguments in term to perform operation .
+        ex: 
+                function sum(a){
+                    return function(b){
+                        if(b){
+                            return sum(a+b) // 
+                        }else{
+                            return a ;
+                        }
+                    }
+                }
+
+                sum(1)(2)(3)(4)() // 10 ;
+
+
+-39. What are the different ways to define a function in JavaScript?
+ans : 
+    1. Functions in JavaScript can be defined using 
+        -1.function declarations,
+        -2.function expressions, 
+        -3.arrow functions,
+        -4.ES6 methods
+
+                    // Function declaration
+                            function greet(name) {
+                                return 'Hello, ' + name;
+                            }
+
+                    // Function expression
+                            var greet = function(name) {
+                                return 'Hello, ' + name;
+                            };
+
+                    // Arrow function
+                            var greet = (name) => 'Hello, ' + name;
+
+                    // ES6 method
+                            var obj = {
+                                greet(name) {
+                                    return 'Hello, ' + name;
+                                }
+                            };
+
+
+-40. What is "arguments" object in JavaScript function and how is it used ?
+ans : 
+    1. "arguments" is keyword in javascript .
+    2. The "arguments" object is an array-like object available inside functions that contains the values of the arguments passed to the function.
+    3. it is not real array means we can not perform any array method and any higher order function (map , filter and reduce) directly .
+    4. to perform higher order function we have to convert first as real array by Array.from(arguments) . 
+    5. it has only "length" property .
+
+                        function sum() {
+                                var total = 0;
+                                for (var i = 0; i < arguments.length; i++) {
+                                    total += arguments[i];
+                                }
+                                return total;
+                        }
+                        console.log(sum(1, 2, 3)); // Output: 6
+
+
+-41. what are different function in javascript ? 
+ans : 
+    In JavaScript, functions can be categorized into several types based on their behavior and how they are defined.
+
+    1. Regular Functions: 
+            -it is normal function . it is defined using "function" keyword and can take parameters, perform operations, and return values.
+        Example :
+                function add(a, b) {
+                    return a + b;
+                }
+
+    2. Arrow Functions: 
+            -Introduced in ES6, arrow functions provide a concise syntax for writing functions.
+            -They are particularly useful for short, single-expression functions.
+            -It lexically bind the this value.
+
+        Example : 
+            const greet = (name) => {
+                 return 'Hello, ' + name + '!';
+            };
+
+    3. Anonymous Functions : 
+            - a function with no name is called Anonymous Functions .
+            - it is often defined as function expressions means as value .
+            - They are commonly used as callback functions or immediately-invoked function (IIFEs)
+        Example : 
+
+                const sayHello = function(name) {
+                  console.log('Hello, ' + name + '!');
+                };
+
+    4. IIFE (Immediately-Invoked Function Expression):
+                -An IIFE is a function that is defined and invoked immediately.
+
+        Example: 
+                (function() {
+                    console.log('This is an IIFE.');
+                })();
+
+    5. Constructor Functions : 
+                -These functions are used to create objects with the "new" keyword. 
+                -it typically define the structure and behavior of objects by initializing their properties and methods.
+
+        Example : 
+                    function Person(name, age) {
+                        this.name = name;
+                        this.age = age;
+                    }
+
+    6. Higher Order  Function : 
+    7. Getter and Setter Functions :
+                -These are special types of functions used to define properties on objects.
+                -Getter functions are invoked when a property is accessed .
+                -setter functions are invoked when a property is assigned a new value.
+            Example :
+
+                const person = {
+                        _name: 'John',
+                        get name() {
+                            return this._name;
+                        },
+                        set name(value) {
+                            this._name = value;
+                        }
+                };
+
+    8. first class function : 
+            -a first-class function, is a function in programming that can be treated as a value.
+            -This means it can be:
+                -"Assigned to a variable" : You can assign a function to a variable just like any other value.
+                -"Passed as an argument" : You can pass a function as an argument to another function.
+                -"Returned from a function" : A function can return another function as its result.
+
+
+-42. What is prototypal inheritance or inheritence in JavaScript?
+ans :   
+    1. Prototypal inheritance is a core concept in JavaScript that allows objects to inherit properties and methods from other objects.
+    2. JavaScript uses a prototype-based inheritance model.Unlike class-based inheritance found in some other programming languages .
+
+    example : 
+            // Define a constructor function for creating Person objects
+            function Person(name) {
+                this.name = name;
+            }
+
+            // Add a method to the prototype of Person objects
+            Person.prototype.introduce = function() {
+                 console.log('Hello, my name is ' + this.name);
+            };
+
+            // Create a new object using the Person constructor
+            const john = new Person('John');
+            console.log(john); // Output: Person { name: 'John' }
+
+            // Define another constructor function for creating Student objects
+            function Student(name, grade) {
+                 Person.call(this, name); // Call the Person constructor to initialize properties
+                 this.grade = grade;
+            }
+
+            // Inherit properties and methods from Person prototype
+            Student.prototype = Object.create(Person.prototype);
+            Student.prototype.constructor = Student; // Set constructor property to Student
+
+            // Add a method specific to Student objects
+            Student.prototype.displayGrade = function() {
+                console.log(this.name + ' is in grade ' + this.grade);
+            };
+
+            // Create a new object using the Student constructor
+            const alice = new Student('Alice', 8);
+            console.log(alice); // Output: Student { name: 'Alice', grade: 8 }
+
+            // Call methods on both objects
+            john.introduce();   // Output: Hello, my name is John
+            alice.introduce();  // Output: Hello, my name is Alice
+            alice.displayGrade();// Output: Alice is in grade 8
+
+
+-43. What is the purpose of the Object.create() method in JavaScript, and how is it used in prototypal inheritance?
+ans : 
+    1.The Object.create() method in JavaScript is used to create a new instance object with a specified prototype object.
+    2.Its purpose is to establish a prototypal relationship between objects, allowing one object to inherit properties and methods from another object.
+
+    example : 
+    // Define a prototype object
+        const PersonPrototype = {
+            greet: function() {
+                console.log('Hello!');
+            }
+        };
+
+        // Create a new object inheriting from personPrototype
+        const john = Object.create(PersonPrototype);
+        john.name = 'John';
+
+        // Accessing method inherited from the prototype
+        john.greet(); // Output: Hello!
+
+
+-44 What is event delegation in JavaScript? 
+ans : 
+    1.Event delegation in JavaScript is a technique where instead of attaching event handlers to individual elements, you attach a single event handler to a parent element that will handle events for all its descendants.
+    2.Event delegation is closely related to event bubbling because it relies on the bubbling phase of event propagation in the Document Object Model (DOM).
+
+
+-45. What is event propagation ?
+ans : 
+    1. Event propagation, also known as event flow ,it inform us in which direction event is flowing .
+    2. It involves the movement of an event through different phases, from the target element where the event originated to its ancestors or descendants.
+    3. Phases of Event Propagation:
+        1.Capturing Phase (Event Capture)
+        2.Bubbling Phase (Event Bubbling)
+
+    -Capturing Phase (Event Capture) : 
+                1. events are captured from the top of the DOM tree and then propagated down to the target element (where you clicked).
+                2. the event moves from the root of the DOM tree towards the target element.
+                3. During the capturing phase, the browser traverses the DOM tree from the root node (usually the document object) down to the target element.
+                4. it is achieved by setting second arg of EventListener true (useCapture = true) 
+                Example : 
+                    <body>
+                        <div class="outer">
+                            <div class="inner">
+                                 <button id="btn">Click me</button>
+                            </div>
+                        </div>
+
+                        <script>
+                            // Add event listener during the capturing phase
+                            document.getElementById('outer').addEventListener('click', function(event) {
+                            console.log('Capturing Phase: Outer div');
+                            }, true);
+
+                            document.getElementById('inner').addEventListener('click', function(event) {
+                            console.log('Capturing Phase: Inner div');
+                            }, true);
+                            document.getElementById('btn').addEventListener('click', function(event) {
+                            console.log('Capturing Phase: Button');
+                            },true);
+                        </script>
+                    </body>
+
+                    condition : 
+                        When you click on the button, event handlers are triggered during the capturing phase in the order of 
+                        the DOM hierarchy: body -> outer div -> inner div -> button.
+                    answer
+                        Capturing Phase: Body
+                        Capturing Phase: Outer div
+                        Capturing Phase: Inner div
+                        Capturing Phase: Button
+
+                    condition : 
+                        When you click on the div with id "inner", event handlers are triggered during the capturing phase in the order of 
+                        the DOM hierarchy: body -> outer div -> inner div -> button.
+                    answer
+                        Capturing Phase: Body
+                        Capturing Phase: Outer div
+                        Capturing Phase: Inner div
+    
+    -Bubbling Phase (Event Bubbling) :
+                1.in Bubbling Phase Events propagate from the target element up to its parent elements  and eventually to the root of the DOM tree .
+                2. it is default behaviour .
+                Example : 
+
+                    <body>
+                        <div class="outer">
+                            <div class="inner">
+                                 <button id="btn">Click me</button>
+                            </div>
+                        </div>
+
+                        <script>
+                            // Add event listener during the capturing phase
+                            document.getElementById('outer').addEventListener('click', function(event) {
+                            console.log('Capturing Phase: Outer div');
+                            });
+
+                            document.getElementById('inner').addEventListener('click', function(event) {
+                            console.log('Capturing Phase: Inner div');
+                            });
+                            document.getElementById('btn').addEventListener('click', function(event) {
+                            console.log('Capturing Phase: Button');
+                            });
+                        </script>
+                    </body>
+
+                    condition : 
+                        When you click on the button, event handlers are triggered during the capturing phase in the order of 
+                        the DOM hierarchy: body -> outer div -> inner div -> button.
+                    answer
+                        Capturing Phase: Button
+                        Capturing Phase: Inner div
+                        Capturing Phase: Outer div
+                        Capturing Phase: Body
+
+                    condition : 
+                        When you click on the div with id "inner", event handlers are triggered during the capturing phase in the order of 
+                        the DOM hierarchy: body -> outer div -> inner div -> button.
+                    answer
+                        Capturing Phase: Inner div
+                        Capturing Phase: Outer div
+                        Capturing Phase: Body
+
+
+-46. What is object destructuring in JavaScript? 
+ans : 
+    1.Object destructuring is a feature that allows you to extract properties from objects and bind them to separate variables using a concise syntax .
+    Example :
+        var person = { name: 'John', age: 30 };
+        var { name, age } = person;
+        console.log(name, age); // Output: John 30
+
+
+-47. What is array destructuring in JavaScript?
+ans : 
+    1.  It allows you to unpack values of arrays into distinct variables .
+    Example : 
+        var numbers = [1, 2, 3];
+        var [first, second, third] = numbers;
+        console.log(first, second, third); // Output: 1 2 3
+
+
+-48. What are "template literals" in JavaScript?
+ans : 
+    1."Template literals" is way to create string that allow embedding "variables" and "expression" directly . 
+    2.They are defined using backticks ( ` `), and expressions are enclosed within `${}`. 
+    Example :
+        const name = 'John';
+        const greeting = `Hello, ${name}!`;
+        console.log(greeting); // Output: Hello, John!
+
+
+-49. What are "Rest parameters(...)" in JavaScript?
+ans : 
+    1.Rest parameter is way to manage function's parameters in easy way .
+    2.Rest parameters allow functions to take indefinite number of parameters . which can be stored inside single variable .
+    3.They enable functions to accept any number of arguments .
+    4. it should be use always as last parameter .
+    Example :
+            function sum(...numbers) {
+                 return numbers.reduce((acc, curr) => acc + curr, 0);
+            }
+
+            console.log(sum(1, 2, 3, 4)); // Output: 10
+
+
+-50. What are "spread parameters(...)" in JavaScript?
+ans : 
+    1. The "spread operator(...)", also denoted by (...),
+    2. It allows an array or object to be expanded into individual elements .
+    Example : 
+        const array1 = [1, 2, 3];
+        const array2 = [4, 5, 6];
+
+        const mergedArray = [...array1, ...array2];
+
+        console.log(mergedArray); // Output: [1, 2, 3, 4, 5, 6] ;
+
+
+-51. What are "default parameters" in JavaScript?
+ans :
+    1.Default parameters is special purpose parameter that allow functions to initialize parameters with default values if they are not provided by the caller. 
+    Example :
+
+            function greet(name = 'World') {
+                console.log(`Hello, ${name}!`);
+            }
+
+            greet(); // Output: Hello, World!
+            greet('John'); // Output: Hello, John!
+
+
+-52. What is the difference between "Object.freeze()" and "const" in JavaScript?
+ans :
+    1. Object.freeze() , freeze the property of object and does not allow to update and delete that property.
+    2."const" is a keyword used to declaire variables with constant value, but it does not make objects immutable
+
+    Example : 
+            object with const
+                const obj = { prop: 'value' };
+                obj.prop = 'new value'; // Allowed
+
+            object with freeze method. 
+                Object.freeze(obj);
+                obj.prop = 'modified value'; // Not allowed
+
+
+-53. What are the different methods to clone an object in JavaScript? 
+ans : 
+    1.Object.assign() : 
+        Example : 
+            const originalObject = { a: 1, b: 2 };
+            const clonedObject = Object.assign({}, originalObject);
+            console.log(clonedObject); // Output: { a: 1, b: 2 }
+    
+    2.Spread Operator {...} :
+        Example :
+            const originalObject = { a: 1, b: 2 };
+            const clonedObject = { ...originalObject };
+            console.log(clonedObject); // Output: { a: 1, b: 2 }
+    
+    3. JSON.parse() and JSON.stringify() :
+        Example : 
+            const originalObject = { a: 1, b: 2 };
+            const clonedObject = JSON.parse(JSON.stringify(originalObject));
+            console.log(clonedObject); // Output: { a: 1, b: 2 }
+
+    4. Object.create() :
+        Example :
+            const originalObject = { a: 1, b: 2 };
+            const clonedObject = Object.create(Object.getPrototypeOf(originalObject), Object.getOwnPropertyDescriptors(originalObject));
+            console.log(clonedObject); // Output: { a: 1, b: 2 }
+
+
+-54. create custom memoization ?
+ans : 
+    1. Memoization is an optimization technique used to cache the results of expensive function calls 
+        and return the cached result when the same inputs occur again.
+         It can improve performance by avoiding redundant calculations.
+         
+            function memoize(func) {
+                var cache = {};
+                return function(...args) {
+                    var key = JSON.stringify(args);
+                    if (!cache[key]) {
+                    cache[key] = func(...args);
+                    }
+                    return cache[key];
+                };
+        }
+
+        function func(a,b){
+            return a+b
+        }
+
+       // Memoize the add function
+        const memoizedAdd = memoize(add);
+
+        // Call the memoized add function with different arguments
+        console.log(memoizedAdd(2, 3)); // Output: Adding: 2 + 3, Result: 5
+        console.log(memoizedAdd(2, 3)); // Output: Result: 5 (Retrieved from cache)
+        console.log(memoizedAdd(4, 5)); // Output: Adding: 4 + 5, Result: 9
+        console.log(memoizedAdd(4, 5)); // Output: Result: 9 (Retrieved from cache)
+
+
+ 
